@@ -29,7 +29,7 @@ public class Connection
 
 	// connecting return es connect
 	@SuppressWarnings({ "resource", "unchecked" })
-	public TransportClient connection()
+	public TransportClient get_connection()
 	{
 		TransportClient client = null;
 		try
