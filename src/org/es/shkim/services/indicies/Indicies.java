@@ -1,4 +1,4 @@
-package org.es.shkim.services;
+package org.es.shkim.services.indicies;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import org.elasticsearch.common.collect.ImmutableOpenMap;
 
 import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
 
-public class Indices
+public class Indicies
 {
 
 	// get all {index=[types]}

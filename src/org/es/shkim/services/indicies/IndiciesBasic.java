@@ -1,10 +1,10 @@
-package org.es.shkim.services;
+package org.es.shkim.services.indicies;
 
 import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsRequest;
 import org.elasticsearch.client.transport.TransportClient;
 import org.es.shkim.connection.Connection;
 
-public class IndicesBasic
+public class IndiciesBasic
 {
 	private Connection con = new Connection();
 
