@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.elasticsearch.client.transport.TransportClient;
 import org.es.shkim.connection.Connection;
+import org.es.shkim.services.cluster.Cluster;
 import org.es.shkim.services.indicies.Indicies;
 
 public class Main
@@ -21,20 +22,23 @@ public class Main
 		System.out.println("pr start at - " + sdf.format(new Date(pr_start_time)));
 		TransportClient client = con.get_connection();
 
-		Indicies i = new Indicies();
-		Map<String, List<String>> indices = i.get_all_indices_info(client);
-		Set<String> keyset = indices.keySet();
-
-		for (String k : keyset)
-		{
-			List<String> types = i.get_type_list(client, k);
-			for (String t : types)
-			{
-				System.out.println(t);
-			}
-			System.out.println("----------------------------------");
-			
-		}
+		// Indicies i = new Indicies();
+		// Map<String, List<String>> indices = i.get_all_indices_info(client);
+		// Set<String> keyset = indices.keySet();
+		//
+		// for (String k : keyset)
+		// {
+		// List<String> types = i.get_type_list(client, k);
+		// for (String t : types)
+		// {
+		// System.out.println(t);
+		// }
+		// System.out.println("----------------------------------");
+		//
+		// }
+		
+		Cluster c = new Cluster();
+		c.get_cluster_state(client);
 
 		con.dis_connection(client);
 		long e_time = System.currentTimeMillis();
