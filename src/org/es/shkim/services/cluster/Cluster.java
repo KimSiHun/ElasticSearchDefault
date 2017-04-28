@@ -9,6 +9,7 @@ import org.elasticsearch.common.collect.ImmutableOpenMap;
 
 public class Cluster
 {
+	// cluster state
 	private ClusterState get_cluster_state(TransportClient client)
 	{
 		ClusterState cs = client.admin().cluster().prepareState().execute().actionGet().getState();
@@ -29,10 +30,11 @@ public class Cluster
 		return master_nodes;
 	}
 
-	public ClusterStatsResponse monitoring(TransportClient client)
+	public ClusterStatsResponse get_cluster_info(TransportClient client)
 	{
 		ClusterStatsResponse cs_stats = client.admin().cluster().clusterStats(new ClusterStatsRequest()).actionGet();
 		return cs_stats;
 	}
-
+	
+	
 }

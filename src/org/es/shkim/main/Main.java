@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.cluster.ClusterState;
 import org.es.shkim.connection.Connection;
 import org.es.shkim.services.cluster.Cluster;
 
@@ -19,7 +20,8 @@ public class Main
 		TransportClient client = con.get_connection();
 
 		Cluster c = new Cluster();
-		c.monitoring(client);
+		
+		
 		con.dis_connection(client);
 		long e_time = System.currentTimeMillis();
 		System.out.println("Pr end at - " + sdf.format(new Date(e_time)));
