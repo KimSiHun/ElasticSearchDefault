@@ -60,22 +60,22 @@ public class Configure
 
 		if (null != key && key.equals("es.host"))
 		{
-			value = conf_properties.getProperty("es.connect.host");
+			value = conf_properties.getProperty("es.connect.host").replace("\"", "").trim();
 		} else if (null != key && key.equals("es.port"))
 		{
-			value = conf_properties.getProperty("es.connect.port");
+			value = conf_properties.getProperty("es.connect.port").replace("\"", "").trim();
 		} else if (null != key && key.equals("es.cluster"))
 		{
-			value = conf_properties.getProperty("es.connect.cluster.name");
+			value = conf_properties.getProperty("es.connect.cluster.name").replace("\"", "").trim();
 		} else if (null != key && key.equals("es.ping.timeout"))
 		{
-			value = conf_properties.getProperty("es.connect.transport.ping_timeout");
+			value = conf_properties.getProperty("es.connect.transport.ping_timeout").replace("\"", "").trim();
 		} else if (null != key && key.equals("es.nodes.interval"))
 		{
-			value = conf_properties.getProperty("es.transport.nodes_sampler_interval");
+			value = conf_properties.getProperty("es.transport.nodes_sampler_interval").replace("\"", "").trim();
 		} else if (null != key && key.equals("es.sniff"))
 		{
-			value = conf_properties.getProperty("es.transport.sniff");
+			value = conf_properties.getProperty("es.transport.sniff").replace("\"", "").trim();
 		}
 		return value;
 	}
