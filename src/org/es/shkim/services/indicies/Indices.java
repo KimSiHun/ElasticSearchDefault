@@ -13,7 +13,7 @@ import org.elasticsearch.common.collect.ImmutableOpenMap;
 
 import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
 
-public class Indicies
+public class Indices
 {
 
 	// get all {index=[types]}

@@ -4,7 +4,7 @@ import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsRequest;
 import org.elasticsearch.client.transport.TransportClient;
 import org.es.shkim.connection.Connection;
 
-public class IndiciesBasic
+public class IndicesBasic
 {
 	private Connection con = new Connection();
 

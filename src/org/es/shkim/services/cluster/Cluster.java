@@ -1,5 +1,7 @@
 package org.es.shkim.services.cluster;
 
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsRequest;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.ClusterState;
 import org.elasticsearch.cluster.node.DiscoveryNode;
@@ -26,5 +28,11 @@ public class Cluster
 		ImmutableOpenMap<String, DiscoveryNode> master_nodes = state.getNodes().getMasterNodes();
 		return master_nodes;
 	}
-	
+
+	public ClusterStatsResponse monitoring(TransportClient client)
+	{
+		ClusterStatsResponse cs_stats = client.admin().cluster().clusterStats(new ClusterStatsRequest()).actionGet();
+		return cs_stats;
+	}
+
 }
