@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
+import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsRequest;
 import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.metadata.MappingMetaData;
 import org.elasticsearch.common.collect.ImmutableOpenMap;
+import org.elasticsearch.common.settings.Settings;
 
 import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
 
@@ -65,6 +69,35 @@ public class Indices
 		}
 
 		return type_list;
+	}
+
+	public boolean index_isExist(TransportClient client, String index)
+	{
+		IndicesExistsResponse res = client.admin().indices().prepareExists(index).get();
+		return res.isExists();
+	}
+	
+	public boolean create_index(TransportClient client, String index, int shards, int replicas)
+	{
+		if (index_isExist(client, index))
+		{
+			return false;
+		}
+		
+		CreateIndexResponse res = client.admin().indices().prepareCreate(index).setSettings(
+				Settings.builder().put("index.number_of_shards", shards).put("index.number_of_replicas", replicas))
+				.get();
+		return res.isAcknowledged();
+	}
+
+	public boolean delete_index(TransportClient client, String index)
+	{
+		if (!index_isExist(client, index))
+		{
+			return false;
+		}
+		DeleteIndexResponse res = client.admin().indices().prepareDelete(index).get();
+		return res.isAcknowledged();
 	}
 
 }

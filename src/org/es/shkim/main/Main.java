@@ -3,10 +3,11 @@ package org.es.shkim.main;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.cluster.ClusterState;
 import org.es.shkim.connection.Connection;
-import org.es.shkim.services.cluster.Cluster;
+import org.es.shkim.services.indicies.Indices;
 
 public class Main
 {
@@ -19,8 +20,17 @@ public class Main
 		System.out.println("pr start at - " + sdf.format(new Date(pr_start_time)));
 		TransportClient client = con.get_connection();
 
-		Cluster c = new Cluster();
+		Indices i = new Indices();
 		
+		String index = "test0";
+		
+		boolean result = false;
+		
+		result = i.delete_index(client, index);
+		System.out.println(result);
+		
+//		result= i.create_index(client, index,3, 0);
+//		System.out.println(result);
 		
 		con.dis_connection(client);
 		long e_time = System.currentTimeMillis();
