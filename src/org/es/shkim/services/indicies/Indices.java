@@ -14,6 +14,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.metadata.MappingMetaData;
 import org.elasticsearch.common.collect.ImmutableOpenMap;
 import org.elasticsearch.common.settings.Settings;
+import org.es.shkim.services.esutils.EsUtiles;
 
 import com.carrotsearch.hppc.cursors.ObjectObjectCursor;
 
@@ -71,15 +72,9 @@ public class Indices
 		return type_list;
 	}
 
-	public boolean index_isExist(TransportClient client, String index)
-	{
-		IndicesExistsResponse res = client.admin().indices().prepareExists(index).get();
-		return res.isExists();
-	}
-	
 	public boolean create_index(TransportClient client, String index, int shards, int replicas)
 	{
-		if (index_isExist(client, index))
+		if (EsUtiles.index_isExist(client, index))
 		{
 			return false;
 		}
@@ -92,7 +87,7 @@ public class Indices
 
 	public boolean delete_index(TransportClient client, String index)
 	{
-		if (!index_isExist(client, index))
+		if (!EsUtiles.index_isExist(client, index))
 		{
 			return false;
 		}
