@@ -3,8 +3,6 @@ package org.es.shkim.main;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.es.shkim.connection.Connection;
 import org.es.shkim.services.indicies.Indices;

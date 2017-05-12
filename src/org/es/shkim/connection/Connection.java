@@ -20,7 +20,7 @@ public class Connection
 	private boolean	sniff					= true;
 
 	// connecting return es connect
-	@SuppressWarnings({ "resource", "unchecked" })
+	@SuppressWarnings({ "resource" })
 	public TransportClient get_connection()
 	{
 		// read configure & set

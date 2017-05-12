@@ -20,7 +20,10 @@
 
 	<properties>
 		<es.version>5.2.2</es.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+
 
 	<dependencies>
 		<!-- junit for test -->
@@ -30,7 +33,7 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Elastic Search Basic -->
 		<dependency>
 			<groupId>org.elasticsearch.client</groupId>
@@ -42,7 +45,7 @@
 			<artifactId>elasticsearch</artifactId>
 			<version>5.2.2</version>
 		</dependency>
-		
+
 		<!-- transport-netty -->
 		<dependency>
 			<groupId>org.elasticsearch.plugin</groupId>
@@ -50,7 +53,7 @@
 			<version>5.2.2</version>
 			<type>jar</type>
 		</dependency>
-		
+
 		<!-- log4j -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -62,7 +65,7 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.6.2</version>
 		</dependency>
-		
+
 		<!-- etc -->
 		<dependency>
 			<groupId>com.lmax</groupId>
