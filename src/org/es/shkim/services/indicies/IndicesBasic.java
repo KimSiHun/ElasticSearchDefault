@@ -6,13 +6,11 @@ import org.es.shkim.connection.Connection;
 
 public class IndicesBasic
 {
-	private Connection con = new Connection();
-
 	// test
 	public void indices_basic()
 	{
-		TransportClient client = con.get_connection();
+		TransportClient client = Connection.get_instance().get_connection();
 		System.out.println(String.valueOf(client.admin().indices().getMappings(new GetMappingsRequest()).actionGet().getMappings()));
-		con.dis_connection(client);
+		client.close();
 	}
 }

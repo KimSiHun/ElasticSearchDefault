@@ -1,40 +1,38 @@
 package org.es.shkim.services.mappings;
 
-import java.io.IOException;
 import java.util.Map;
-import java.util.Set;
 
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
 
 public class Mappings
 {
-	public boolean create_mapping(TransportClient client, String index, String type, Map<String,Object> fields){
-		
-		XContentBuilder builder = null;
-		Set<String> keys = fields.keySet();
-		try
-		{
-			builder = XContentFactory.jsonBuilder();
-			builder.startObject();
-			
-			for (String k : keys)
-			{
-				builder.field(k, fields.get(k));
-			}
-			builder.endObject();
-			
-		} catch (IOException e)
-		{
-			System.err.println(e);
-		}
-		
-		return client.admin().indices().preparePutMapping(index).setType(type).setSource(builder).get().isAcknowledged();
-	}
-	
-	public void delete_mapping(TransportClient client, String index, String type)
+	// fields set "field_name" : "field_type" -> "field_name" : { "type" : "field_type" }
+	private String map_set_fields(Map<String, Object> fields)
 	{
+		String json = "{\n" + "	\"properties\": {\n";
+		Object keys[] = fields.keySet().toArray();
 		
+		for (int i = 0; i < keys.length; i++)
+		{
+			if (i == keys.length - 1)
+			{
+				json = json +"		\"" + keys[i] +"\": {\n" + "		\"type\": \"" + fields.get(keys[i]) + "\"\n"
+						+ "		}\n";
+				break;
+			} else
+			{
+				json = json + "		\"" + keys[i] + "\": {\n" + "		\"type\": \"" + fields.get(keys[i]) + "\"\n"
+						+ "		},\n";
+			}
+		}
+		json = json + "}\n}";
+		return json;
 	}
+
+	public boolean create_mapping(TransportClient client, String index, String type, Map<String,Object> fields)
+	{
+		return client.admin().indices().preparePutMapping(index).setType(type).setSource(map_set_fields(fields)).get()
+				.isAcknowledged();
+	}
+
 }

@@ -19,6 +19,17 @@ public class Connection
 	private String	nodes_sampler_interval	= "5s";
 	private boolean	sniff					= true;
 
+	private Connection(){};
+	
+	private static class Singleton{
+		private static final Connection instance = new Connection();
+	}
+	
+	public static Connection get_instance(){
+		return Singleton.instance;
+	}
+	
+	
 	// connecting return es connect
 	@SuppressWarnings({ "resource" })
 	public TransportClient get_connection()

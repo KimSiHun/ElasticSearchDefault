@@ -15,6 +15,6 @@ public class EsUtiles
 		{
 			return false;
 		}
-		return client.admin().indices().prepareTypesExists(index).setTypes(type).get().isExists();
+		return client.admin().indices().prepareGetMappings().get().getMappings().get(index).get(type) != null;
 	}
 }
