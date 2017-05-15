@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsRequest;
 import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -77,11 +75,11 @@ public class Indices
 		{
 			return false;
 		}
-		
-		CreateIndexResponse res = client.admin().indices().prepareCreate(index).setSettings(
-				Settings.builder().put("index.number_of_shards", shards).put("index.number_of_replicas", replicas))
-				.get();
-		return res.isAcknowledged();
+
+		return client
+				.admin().indices().prepareCreate(index).setSettings(Settings.builder()
+						.put("index.number_of_shards", shards).put("index.number_of_replicas", replicas))
+				.get().isAcknowledged();
 	}
 
 	public boolean delete_index(TransportClient client, String index)
@@ -90,8 +88,7 @@ public class Indices
 		{
 			return false;
 		}
-		DeleteIndexResponse res = client.admin().indices().prepareDelete(index).get();
-		return res.isAcknowledged();
+		return client.admin().indices().prepareDelete(index).get().isAcknowledged();
 	}
 
 }
