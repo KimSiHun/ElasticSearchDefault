@@ -1,0 +1,6 @@
+es.connect.host=192.168.0.113
+es.connect.port=9300
+es.connect.cluster.name=jinn_cluster
+es.connect.transport.ping_timeout=15
+es.transport.nodes_sampler_interval=15
+es.transport.sniff=false

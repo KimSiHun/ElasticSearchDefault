@@ -6,7 +6,6 @@ import java.util.Date;
 import org.elasticsearch.client.transport.TransportClient;
 import org.es.shkim.connection.Connection;
 import org.es.shkim.services.esutils.EsUtiles;
-import org.es.shkim.services.indicies.Indices;
 
 public class Main
 {

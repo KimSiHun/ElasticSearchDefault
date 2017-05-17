@@ -31,7 +31,7 @@ public class Connection
 	
 	
 	// connecting return es connect
-	@SuppressWarnings({ "resource" })
+	@SuppressWarnings({ "resource", "unchecked" })
 	public TransportClient get_connection()
 	{
 		// read configure & set
@@ -105,15 +105,6 @@ public class Connection
 			System.out.println("Invalid properties and ES TransportClient set fail - " + System.currentTimeMillis());
 		}
 		return client;
-	}
-
-	public void dis_connection(TransportClient client)
-	{
-		if (null != client)
-		{
-			client.close();
-			client = null;
-		}
 	}
 
 }
